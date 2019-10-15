@@ -7,10 +7,14 @@
     "@types/node": "12.7.12",
     "@types/react": "16.9.5",
     "@types/react-dom": "16.9.1",
+    "@types/yup": "^0.26.14",
+    "formik": "^1.5.8",
+    "node-sass": "^4.12.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.3",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
