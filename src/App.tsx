@@ -54,7 +54,11 @@ const App: React.FC = () => {
 
     const [winnerState, setWinnerState] = useState(initialWinnerState);
 
-    const [winnerLine, setWinnerLine] = useState<number>();
+    const [winnerLine, setWinnerLine] = useState({
+        top: false,
+        middle: false,
+        bottom: false,
+    });
 
     const checkWin = () => {
         let winner = checkCoordinates(positionsRef.current);
@@ -85,7 +89,7 @@ const App: React.FC = () => {
             'cherrytop': {shouldBlink: false},
             'cherrymiddle': {shouldBlink: false},
             'cherrybottom': {shouldBlink: false},
-            '7cherry': {shouldBlink: false},
+            'cherry7': {shouldBlink: false},
             'bars': {shouldBlink: false},
         };
     };
@@ -101,7 +105,11 @@ const App: React.FC = () => {
 
             let selector: any;
 
-            setWinnerLine(winnerLines.length);
+            setWinnerLine(() => ({
+                top: winnerLines.some(({reelsPosition}) => reelsPosition === 'top'),
+                middle: winnerLines.some(({reelsPosition}) => reelsPosition === 'middle'),
+                bottom: winnerLines.some(({reelsPosition}) => reelsPosition === 'bottom'),
+            }));
             winnerLines.map((item, index) => {
                 if (item.reels === 'cherry') {
                     clonedWinner.splice(index, 1);
@@ -150,7 +158,11 @@ const App: React.FC = () => {
 
             setTimeout(() => {
                 setBlinking(getInitialBlinkingState());
-                setWinnerLine(0);
+                setWinnerLine({
+                    top: false,
+                    middle: false,
+                    bottom: false,
+                });
             }, 2000);
 
         }
@@ -209,7 +221,8 @@ const App: React.FC = () => {
                                                         setBalanceVal(parsedVal || '')
                                                     }}/>
                             </label>
-                            <div className={`flex spinner-container ${winnerLine === 1 ? 'middle-line' : winnerLine === 2 ? 'top-bottom-line' : ''}`}>
+                            <div className={`flex spinner-container 
+                            ${winnerLine.middle ? 'middle-line': ''} ${winnerLine.bottom ? 'bottom-line' : ''} ${winnerLine.top ? 'top-line' : ''}`}>
                                 <Spinner spinClicked={spinClicked}
                                          customPosition={customPosition}
                                          handlePositions={handlePositions}/>
@@ -231,7 +244,7 @@ const App: React.FC = () => {
                             <li className={`${reels['cherrymiddle'].shouldBlink ? 'blink' : ''}`}>3 CHERRY symbols on center line 1000</li>
                             <li className={`${reels['cherrybottom'].shouldBlink ? 'blink' : ''}`}>3 CHERRY symbols on bottom line 4000</li>
                             <li className={`${reels['7'].shouldBlink ? 'blink' : ''}`}>3 7 symbols on any line 150</li>
-                            <li className={`${reels['7cherry'].shouldBlink ? 'blink' : ''}`}>Any combination of CHERRY and 7 on any line 75</li>
+                            <li className={`${reels['cherry7'].shouldBlink ? 'blink' : ''}`}>Any combination of CHERRY and 7 on any line 75</li>
                             <li className={`${reels['3bar'].shouldBlink ? 'blink' : ''}`}>3 3xBAR symbols on any line 50</li>
                             <li className={`${reels['2bar'].shouldBlink ? 'blink' : ''}`}>3 2xBAR symbols on any line 20</li>
                             <li className={`${reels['bar'].shouldBlink ? 'blink' : ''}`}>3 BAR symbols on any line 10</li>

@@ -26,9 +26,9 @@ export function checkCoordinates([firstReel, secondReel, thirdReel]: number[]): 
     let cherry7ArrMiddle = [positions['7']['middle'], positions['cherry']['middle']];
     let cherry7ArrBottom = [positions['7']['bottom'], positions['cherry']['bottom']];
 
-    let barsArrTop = [positions['bar']['top'], positions['2bar']['top'], positions['3bar']['top']];
+    let barsArrTop = [positions['bar']['top'], positions['2bar']['top'], 0];
     let barsArrMiddle = [positions['bar']['middle'], positions['2bar']['middle'], positions['3bar']['middle']];
-    let barsArrBottom = [positions['bar']['bottom'], positions['2bar']['bottom'], positions['3bar']['bottom']];
+    let barsArrBottom = [0, positions['2bar']['bottom'], positions['3bar']['bottom']];
 
     const IsInArray = (arr: number[]) => {
         return ~arr.indexOf(firstReelModulus) && ~arr.indexOf(secondReelModulus) && ~arr.indexOf(thirdReelModulus)

@@ -60,7 +60,7 @@ ul {
       background-color: red;
     }
   }
-  &.top-bottom-line {
+  &.bottom-line {
     &:after {
       content: '';
       display: block;
@@ -71,6 +71,8 @@ ul {
       bottom: 50px;
       background-color: red;
     }
+  }
+  &.top-line {
     &:before {
       content: '';
       display: block;
