@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Field, FieldProps} from "formik";
 import {fixedValue, IInitialValues} from '../../App';
+import {isSet} from "../../helpers/methods";
 
 interface IDebugArea {
     values: any;
@@ -9,15 +10,9 @@ interface IDebugArea {
 
 const DebugArea: React.FC<IDebugArea> = ({values, errors, }) => {
 
-    const [backgroundPosition, setBGP] = useState(0);
-
-    useEffect(() => {
-
-    }, []);
-    // console.log(backgroundPosition);
-
     return (
         <>
+            {isSet(errors) ? <p className='required'>All debugging fields are required!!</p> : ''}
             <Field name='fixed'>
                 {({field, form}: FieldProps<IInitialValues>) => (
                     <label className={"ibx-checkbox "}>

@@ -25,7 +25,6 @@ const Spinner: React.FC<ISpinner> = ({spinClicked, handlePositions, reel, custom
         },0);
 
     }, [spinClicked]);
-    // console.log(backgroundPosition);
 
     return (
         <div className={`spinner ${reel === 2 ? 'second' : reel === 3 ? 'third' : ''} ${!backgroundPosition ? 'no-transition' : ''}`}
